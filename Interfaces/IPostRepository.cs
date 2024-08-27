@@ -10,5 +10,6 @@ namespace Asp.NetCore.BlogifyAPI.With.RepositoryDessignPatterns.Interfaces
         Task<Post> CreateAsync(Post post);
         Task<Post> UpdateAsync(int id, UpdatePostRequestDto postDto);
         Task<Post> DeleteAsync(int id);
+        Task<bool> PostExists(int id);
     }
 }

@@ -15,7 +15,7 @@ namespace Asp.NetCore.BlogifyAPI.With.RepositoryDessignPatterns.Repository
         }
         public async Task<List<Post>> GetAllAsync()
         {
-            var posts = _context.Posts.Include(c => c.Comments).ToListAsync();
+            var posts = _context.Posts.Include(p => p.Comments).ToListAsync();
 
             return await posts;
         }
@@ -63,6 +63,10 @@ namespace Asp.NetCore.BlogifyAPI.With.RepositoryDessignPatterns.Repository
             await _context.SaveChangesAsync();
 
             return post;         
+        }
+        public async Task<bool> PostExists(int id)
+        {
+            return await _context.Posts.AnyAsync(p => p.Id == id);
         }
     }
 }

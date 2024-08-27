@@ -12,6 +12,7 @@ namespace Asp.NetCore.BlogifyAPI.With.RepositoryDessignPatterns.Mappers
                 Id = postModel.Id,
                 Title = postModel.Title,
                 Content = postModel.Content,
+                Comments = postModel.Comments.Select(c => c.ToCommentDto()).ToList(),
             };
         }
         

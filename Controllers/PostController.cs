@@ -19,7 +19,9 @@ namespace Asp.NetCore.BlogifyAPI.With.RepositoryDessignPatterns.Controllers
         {
             var postModel = await _postRepository.GetAllAsync();
 
-            return Ok(postModel);
+            var postDto = postModel.Select(p => p.ToPostDto()).ToList();
+
+            return Ok(postDto);
         }   
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreatePostRequestDto postDto)
@@ -56,7 +58,7 @@ namespace Asp.NetCore.BlogifyAPI.With.RepositoryDessignPatterns.Controllers
         }
         [HttpDelete]
         [Route("{id:int}")]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete([FromRoute] int id)
         {
             var postModel = await _postRepository.DeleteAsync(id);
             if(postModel == null)
