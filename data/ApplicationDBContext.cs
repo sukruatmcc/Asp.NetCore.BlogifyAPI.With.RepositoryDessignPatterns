@@ -11,8 +11,8 @@ namespace Asp.NetCore.BlogifyAPI.With.RepositoryDessignPatterns.data
             
         }
 
-        public DbSet<Post> Posts;
-        public DbSet<Comment> Comments;
+        public DbSet<Post> Posts { get; set; }
+        public DbSet<Comment> Comments { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

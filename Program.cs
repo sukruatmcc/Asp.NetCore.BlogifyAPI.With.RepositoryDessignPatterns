@@ -1,4 +1,6 @@
 using Asp.NetCore.BlogifyAPI.With.RepositoryDessignPatterns.data;
+using Asp.NetCore.BlogifyAPI.With.RepositoryDessignPatterns.Interfaces;
+using Asp.NetCore.BlogifyAPI.With.RepositoryDessignPatterns.Repository;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,6 +18,8 @@ builder.Services.AddDbContext<ApplicationDBContext>(options => {
     );
 });
 
+builder.Services.AddScoped<IPostRepository, PostRepository>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -26,5 +30,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.MapControllers();
+
 
 app.Run();
